@@ -1,13 +1,19 @@
-import { normalizeDate } from '@utils/dates.ts';
+import { NotFound } from '@common/exceptions/notFound.ts';
+import { ValidationError } from '@common/exceptions/validation.ts';
 
-import { ListStorageService } from './storages/list.storage.service.ts';
-import { DetailsResponse } from './typings/detailsResponse.ts';
-import { ListResponse } from './typings/listResponse.ts';
-import { Product } from './typings/product.ts';
+import { normalizeDate } from '@utils/dates';
+
+import { ListStorageService } from './storages/list.storage.service';
+import { DetailsResponse } from './typings/detailsResponse';
+import { ListResponse } from './typings/listResponse';
+import { Product } from './typings/product';
 
 interface IProductsDataSourceImpl {
 	getList(): Promise<Product[]>;
-	getDetails(fabricId: string, monthId: string): Promise<DetailsResponse>;
+	getFactoryDetails(
+		factoryId: string,
+		monthId: string
+	): Promise<DetailsResponse>;
 }
 
 export class ProductsDataSourceImpl implements IProductsDataSourceImpl {
@@ -17,25 +23,25 @@ export class ProductsDataSourceImpl implements IProductsDataSourceImpl {
 		return this.getJson();
 	}
 
-	async getDetails(fabricId: string, monthId: string) {
+	async getFactoryDetails(factoryId: string, monthId: string) {
 		const response = await this.getJson();
 
 		if (+monthId < 1 || +monthId > 12) {
-			throw new Error('Wrong month value');
+			throw new ValidationError('Wrong month value');
 		}
 
 		const currentProduct = response.find(
-			product => String(product.factory_id) === fabricId
+			product => String(product.factory_id) === factoryId
 		);
 
 		if (!currentProduct) {
-			throw new Error('Product not found');
+			throw new NotFound('Product not found');
 		}
 
 		const products = response.filter(product => {
 			if (product.date) {
 				return (
-					String(product.factory_id) === fabricId &&
+					String(product.factory_id) === factoryId &&
 					monthId === String(normalizeDate(product.date).getMonth() + 1)
 				);
 			}
@@ -43,7 +49,7 @@ export class ProductsDataSourceImpl implements IProductsDataSourceImpl {
 
 		return {
 			products,
-			factoryId: currentProduct.factory_id
+			factory_id: currentProduct.factory_id
 		};
 	}
 
