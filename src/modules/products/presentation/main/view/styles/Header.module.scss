@@ -1,0 +1,13 @@
+.wrapper {
+  @apply grid grid-cols-2 bg-backgroundSecondary shadow rounded-md p-6;
+  grid-template-areas: 'left right';
+}
+
+.filter {
+  @apply flex flex-row justify-end gap-6;
+  grid-area: right;
+}
+
+.select {
+  @apply bg-backgroundSecondary max-w-[200px] w-full cursor-pointer outline-0;
+}

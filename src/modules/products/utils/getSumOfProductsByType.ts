@@ -4,7 +4,7 @@ export const getSumOfProductsByType = (
 	values: KeyValue<number>,
 	type?: ProductType
 ) => {
-	if (!type) {
+	if (!type || type === ProductType.ALL) {
 		return Object.keys(values).reduce(
 			(previousValue, key) => previousValue + values[key],
 			0
