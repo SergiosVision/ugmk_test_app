@@ -1,6 +1,6 @@
 import { Product } from './product.ts';
 
 export type DetailsResponse = {
-	factoryId: number;
+	factory_id: number;
 	products: Product[];
 };
