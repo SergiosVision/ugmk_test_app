@@ -1,0 +1,11 @@
+.primary-button {
+  @apply bg-primary transition-opacity ease-in-out;
+
+  &:not(:disabled) {
+    @apply cursor-pointer;
+
+    &:hover {
+      opacity: .7;
+    }
+  }
+}

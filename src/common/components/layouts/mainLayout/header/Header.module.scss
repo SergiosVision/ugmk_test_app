@@ -1,0 +1,8 @@
+.header {
+  @apply flex p-6 shadow sticky top-0 justify-center z-10;
+  background-color: theme('colors.background');
+}
+
+.header-container {
+  @apply flex justify-between container;
+}
