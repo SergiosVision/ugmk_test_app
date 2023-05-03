@@ -1,0 +1,5 @@
+.base-card {
+  @apply rounded-md shadow p-6;
+  min-height: 200px;
+  background-color: theme('colors.backgroundSecondary');
+}

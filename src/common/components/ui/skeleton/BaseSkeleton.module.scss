@@ -1,0 +1,4 @@
+.base-skeleton {
+	@apply shadow;
+	--base-color: theme('colors.backgroundSecondary') !important;
+}
