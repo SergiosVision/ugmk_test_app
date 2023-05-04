@@ -1,4 +1,4 @@
-import { Options, SeriesOptionsType } from 'highcharts';
+import { Options, Point, SeriesOptionsType } from 'highcharts';
 import { FC } from 'react';
 
 import ChartComponent from '@modules/chart/Chart';
@@ -10,6 +10,11 @@ const baseOptions: Options = {
 	chart: {
 		type: 'column',
 		height: '300px'
+	},
+	yAxis: {
+		title: {
+			text: 'Tons'
+		}
 	},
 	xAxis: {
 		categories: [
@@ -32,12 +37,25 @@ const baseOptions: Options = {
 
 interface Props {
 	series: SeriesOptionsType[];
+	plotClick: (point: Point) => void;
 }
 
-const Chart: FC<Props> = ({ series }) => {
-	const options = {
+const Chart: FC<Props> = ({ series, plotClick }) => {
+	const options: Options = {
 		...baseOptions,
-		series
+		series,
+		plotOptions: {
+			series: {
+				cursor: 'pointer',
+				point: {
+					events: {
+						click: function () {
+							plotClick(this);
+						}
+					}
+				}
+			}
+		}
 	};
 
 	return <ChartComponent options={options} />;

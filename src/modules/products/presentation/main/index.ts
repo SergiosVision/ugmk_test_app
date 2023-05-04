@@ -1,3 +1,3 @@
-import ProductsChart from '/Provider';
+import ProductsChart from './Provider';
 
-export default { ProductsChart };
+export { ProductsChart };

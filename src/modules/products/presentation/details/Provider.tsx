@@ -2,23 +2,19 @@ import { FC } from 'react';
 
 import { ProductsDataSourceImpl } from '@services/datasources/products/products';
 import { ListStorage } from '@services/datasources/products/storages/listMemoryStorage';
-import localStorageService from '@services/localStorage.service.ts';
 
 import ErrorBoundaryWrapper from '@components/errors/ErrorBoundaryWrapper';
 
 import { ProductsRepositoryImpl } from '../../data/repository';
-import { GetProductsListCase } from '../../domain/usecases/getProductsList';
+import { GetFactoryDetailsCase } from '../../domain/usecases/getFactoryDetails';
 
-import ViewController from './ViewController.tsx';
-import { ProductsViewModel } from './viewModel.ts';
+import ViewController from './ViewController';
+import { FactoryDetailsViewModel } from './viewModel';
 
 const dataSource = new ProductsDataSourceImpl(ListStorage);
 const repository = new ProductsRepositoryImpl(dataSource);
-const getProductsListCase = new GetProductsListCase(repository);
-const viewModel = new ProductsViewModel(
-	{ getProductsListCase },
-	localStorageService
-);
+const getFactoryDetailsCase = new GetFactoryDetailsCase(repository);
+const viewModel = new FactoryDetailsViewModel({ getFactoryDetailsCase });
 
 const Provider: FC = () => {
 	return (

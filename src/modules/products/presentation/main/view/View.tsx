@@ -1,4 +1,4 @@
-import { SeriesOptionsType } from 'highcharts';
+import { Point, SeriesOptionsType } from 'highcharts';
 import { FC } from 'react';
 
 import { ProductType } from '../../../typings/productType';
@@ -12,19 +12,25 @@ interface Props {
 	productType: ProductType;
 	chartData: SeriesOptionsType[];
 	changeFilter: (type: ProductType) => void;
+	plotClick: (point: Point) => void;
 }
 
 const View: FC<Props> = ({
 	chartData,
 	isLoading,
 	productType,
-	changeFilter
+	changeFilter,
+	plotClick
 }) => {
 	return (
 		<div className='flex flex-col w-full gap-6'>
 			<Header productType={productType} changeFilter={changeFilter} />
 			<section className='h-[300px]'>
-				{!isLoading ? <Chart series={chartData} /> : <ChartSkeleton />}
+				{!isLoading ? (
+					<Chart series={chartData} plotClick={plotClick} />
+				) : (
+					<ChartSkeleton />
+				)}
 			</section>
 		</div>
 	);

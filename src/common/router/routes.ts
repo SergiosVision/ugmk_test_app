@@ -1,6 +1,6 @@
 const routes = {
 	home: '/',
-	repositoryDetails: '/repositories/:repo/:owner'
+	factoryDetails: '/factories/:factoryId/:monthId'
 };
 
 export default routes;

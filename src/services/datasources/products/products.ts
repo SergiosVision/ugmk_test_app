@@ -1,11 +1,12 @@
+import sortBy from 'lodash/sortBy';
+
 import { NotFound } from '@common/exceptions/notFound.ts';
 import { ValidationError } from '@common/exceptions/validation.ts';
 
 import { normalizeDate } from '@utils/dates';
 
-import { ListStorageService } from './storages/list.storage.service';
+import { ListMemoryStorage } from './storages/listMemoryStorage';
 import { DetailsResponse } from './typings/detailsResponse';
-import { ListResponse } from './typings/listResponse';
 import { Product } from './typings/product';
 
 interface IProductsDataSourceImpl {
@@ -17,7 +18,7 @@ interface IProductsDataSourceImpl {
 }
 
 export class ProductsDataSourceImpl implements IProductsDataSourceImpl {
-	constructor(private readonly storage: ListStorageService) {}
+	constructor(private readonly storage: ListMemoryStorage) {}
 
 	async getList() {
 		return this.getJson();
@@ -26,7 +27,7 @@ export class ProductsDataSourceImpl implements IProductsDataSourceImpl {
 	async getFactoryDetails(factoryId: string, monthId: string) {
 		const response = await this.getJson();
 
-		if (+monthId < 1 || +monthId > 12) {
+		if (!Number(monthId) || +monthId < 1 || +monthId > 12) {
 			throw new ValidationError('Wrong month value');
 		}
 
@@ -39,12 +40,10 @@ export class ProductsDataSourceImpl implements IProductsDataSourceImpl {
 		}
 
 		const products = response.filter(product => {
-			if (product.date) {
-				return (
-					String(product.factory_id) === factoryId &&
-					monthId === String(normalizeDate(product.date).getMonth() + 1)
-				);
-			}
+			return (
+				String(product.factory_id) === factoryId &&
+				monthId === String(new Date(product.date as string).getMonth() + 1)
+			);
 		});
 
 		return {
@@ -54,14 +53,26 @@ export class ProductsDataSourceImpl implements IProductsDataSourceImpl {
 	}
 
 	private async getJson(): Promise<Product[]> {
-		if (this.storage.size) {
-			return this.storage.list;
+		if (!this.storage.size) {
+			const response = await fetch(
+				`${import.meta.env.VITE_APP_API_URL}/products`
+			);
+			const json = (await response.json()) as Product[];
+
+			this.storage.set(
+				sortBy(
+					json
+						.map(product => ({
+							...product,
+							date: product.date
+								? normalizeDate(product.date).toISOString()
+								: null
+						}))
+						.filter(product => !!product?.date),
+					'date'
+				)
+			);
 		}
-
-		const response = await fetch('/json/products.json');
-		const json = (await response.json()) as ListResponse;
-
-		this.storage.set(json.products.filter(product => !!product?.date));
 
 		return this.storage.list;
 	}

@@ -2,9 +2,9 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import MainLayout from '@components/layouts/mainLayout/MainLayout';
 
+import FactoryDetails from '@pages/factories/FactoryDetails';
+import Main from '@pages/main/Main';
 import NotFound from '@pages/notFound/NotFound';
-import Repositories from '@pages/repositories/Repositories';
-import RepositoryDetails from '@pages/repositories/repositoryDetails/RepositoryDetails';
 
 import routes from './routes';
 
@@ -15,11 +15,11 @@ const router = createBrowserRouter([
 			{
 				path: routes.home,
 				index: true,
-				element: <Repositories />
+				element: <Main />
 			},
 			{
-				path: routes.repositoryDetails,
-				element: <RepositoryDetails />
+				path: routes.factoryDetails,
+				element: <FactoryDetails />
 			},
 			{
 				path: '*',
