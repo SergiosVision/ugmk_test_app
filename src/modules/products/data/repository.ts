@@ -1,5 +1,5 @@
-import { NotFound } from '@common/exceptions/notFound.ts';
-import { ValidationError } from '@common/exceptions/validation.ts';
+import { NotFound } from '@common/exceptions/notFound';
+import { ValidationError } from '@common/exceptions/validation';
 
 import { ProductsDataSourceImpl } from '@services/datasources/products/products';
 
@@ -11,7 +11,7 @@ import { ProductsDefaultError } from '@modules/products/exceptions/productsDefau
 import { FactoryDetailsModel } from '../domain/models/FactoryDetailsModel';
 import { ProductListModel } from '../domain/models/ProductListModel';
 import { ProductType } from '../typings/productType';
-import { getSumOfProductsByType } from '../utils/getSumOfProductsByType.ts';
+import { getSumOfProductsByType } from '../utils/getSumOfProductsByType';
 
 interface IRepositoriesRepositoryImpl {
 	getList(productType?: ProductType): Promise<ProductListModel[]>;

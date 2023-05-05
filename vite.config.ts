@@ -15,7 +15,6 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: [
-			{ find: 'node-fetch', replacement: 'isomorphic-fetch' },
 			{ find: '@', replacement: path.resolve(__dirname, 'src') },
 			{ find: '@common', replacement: path.resolve(__dirname, 'src/common') },
 			{ find: '@pages', replacement: path.resolve(__dirname, 'src/pages') },

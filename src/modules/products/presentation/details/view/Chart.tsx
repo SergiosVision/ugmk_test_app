@@ -12,14 +12,17 @@ const baseOptions: Options = {
 		plotBorderWidth: undefined,
 		plotShadow: false,
 		type: 'pie',
-		height: '500px'
+		height: '400px'
 	},
 	plotOptions: {
 		pie: {
 			allowPointSelect: true,
 			cursor: 'pointer',
 			dataLabels: {
-				enabled: false
+				enabled: true,
+				formatter: function () {
+					return this.y;
+				}
 			},
 			showInLegend: true
 		}

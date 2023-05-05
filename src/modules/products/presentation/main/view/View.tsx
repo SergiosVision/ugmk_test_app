@@ -25,7 +25,7 @@ const View: FC<Props> = ({
 	return (
 		<div className='flex flex-col w-full gap-6'>
 			<Header productType={productType} changeFilter={changeFilter} />
-			<section className='h-[300px]'>
+			<section className='h-[400px]'>
 				{!isLoading ? (
 					<Chart series={chartData} plotClick={plotClick} />
 				) : (

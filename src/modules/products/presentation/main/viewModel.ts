@@ -39,6 +39,8 @@ export class ProductsViewModel {
 	}
 
 	async getList() {
+		this.clearData();
+
 		this._isLoading = true;
 
 		try {
@@ -83,6 +85,16 @@ export class ProductsViewModel {
 			this._productType = ProductType.ALL;
 
 			this.setFilterValueInLocalStorage();
+		}
+	}
+
+	private clearData() {
+		if (this._isLoading) {
+			this._isLoading = false;
+		}
+
+		if (this._list.length) {
+			this._list = [];
 		}
 	}
 }

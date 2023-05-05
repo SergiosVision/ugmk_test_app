@@ -1,8 +1,8 @@
 import { ChangeEvent, FC } from 'react';
 
-import Text from '@components/ui/typography/text/Text.tsx';
+import Text from '@components/ui/typography/text/Text';
 
-import { ProductType } from '../../../typings/productType.ts';
+import { ProductType } from '../../../typings/productType';
 
 import styles from './styles/Header.module.scss';
 

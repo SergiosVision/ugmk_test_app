@@ -6,7 +6,7 @@ const Skeleton: FC = () => {
 	return (
 		<>
 			<BaseSkeleton height='42px' className='mb-6 w-full' />
-			<BaseSkeleton height='500px' />
+			<BaseSkeleton height='400px' />
 		</>
 	);
 };
