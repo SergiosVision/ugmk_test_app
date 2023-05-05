@@ -1,3 +1,3 @@
-import { ValidationError } from '@common/exceptions/validation.ts';
+import { ValidationError } from '@common/exceptions/validation';
 
 export class FactoryValidationError extends ValidationError {}

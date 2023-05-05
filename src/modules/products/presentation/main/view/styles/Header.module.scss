@@ -1,9 +1,9 @@
 .wrapper {
-  @apply flex flex-row justify-end bg-backgroundSecondary shadow rounded-md p-6;
+  @apply flex flex-row w-full sm:justify-end bg-backgroundSecondary shadow rounded-md p-6;
 }
 
 .filter {
-  @apply flex flex-row flex-wrap justify-end gap-6;
+  @apply flex flex-row w-full sm:w-max flex-wrap sm:justify-end gap-6;
 }
 
 .select {

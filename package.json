@@ -1,22 +1,20 @@
 {
-  "name": "vite-test",
+  "name": "ugmk-test-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "json-server": "json-server --watch public/json/products.json --port 3001",
-    "docker:build": "docker build -t chart-test-app-prod . && docker create -p 80:80 --name chart-test-app-prod chart-test-app-prod",
-    "docker:start": "docker container start chart-test-app-prod",
-    "docker:stop": "docker container stop chart-test-app-prod"
+    "dockerize": "docker build -t ugmk_test_app .",
+    "start-container": "docker container run -it -p 3000:3000 --rm ugmk_test_app"
   },
   "dependencies": {
     "highcharts": "10.3.3",
     "highcharts-react-official": "3.2.0",
-    "isomorphic-fetch": "3.0.0",
     "json-server": "0.17.3",
     "lodash": "4.17.21",
     "mobx": "6.9.0",

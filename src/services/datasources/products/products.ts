@@ -1,7 +1,7 @@
 import sortBy from 'lodash/sortBy';
 
-import { NotFound } from '@common/exceptions/notFound.ts';
-import { ValidationError } from '@common/exceptions/validation.ts';
+import { NotFound } from '@common/exceptions/notFound';
+import { ValidationError } from '@common/exceptions/validation';
 
 import { normalizeDate } from '@utils/dates';
 

@@ -23,7 +23,7 @@ const View: FC<Props> = ({ chartData, isLoading, factoryId, monthId }) => {
 	return (
 		<div className='flex flex-col gap-6'>
 			<Link to={routes.home}>
-				<PrimaryButton>Go back</PrimaryButton>
+				<PrimaryButton className='w-full sm:w-max'>Go back</PrimaryButton>
 			</Link>
 
 			{!isLoading ? (
@@ -32,7 +32,7 @@ const View: FC<Props> = ({ chartData, isLoading, factoryId, monthId }) => {
 						Factory {factoryId} production statistics for{' '}
 						{formatMothValueToString(monthId)}
 					</TextH2>
-					<section className='h-[500px]'>
+					<section className='h-[400px]'>
 						<Chart series={chartData} />
 					</section>
 				</>

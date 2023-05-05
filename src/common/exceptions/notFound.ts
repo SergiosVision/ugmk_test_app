@@ -1,3 +1,3 @@
-import { ApplicationException } from './application.ts';
+import { ApplicationException } from './application';
 
 export class NotFound extends ApplicationException {}

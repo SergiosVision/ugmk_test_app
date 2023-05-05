@@ -24,6 +24,8 @@ export class FactoryDetailsViewModel {
 	}
 
 	async getDetails(factoryId: string, monthId: string) {
+		this.clearData();
+
 		this._isLoading = true;
 
 		try {
@@ -39,6 +41,17 @@ export class FactoryDetailsViewModel {
 			runInAction(() => {
 				this._isLoading = false;
 			});
+		}
+	}
+
+	private clearData() {
+		if (this._isLoading) {
+			this._isLoading = false;
+		}
+
+		if (this._data.factory_id) {
+			this._data.factory_id = null;
+			this._data.products = [];
 		}
 	}
 }

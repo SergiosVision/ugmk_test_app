@@ -9,7 +9,7 @@ const baseOptions: Options = {
 	},
 	chart: {
 		type: 'column',
-		height: '300px'
+		height: '400px'
 	},
 	yAxis: {
 		title: {
@@ -17,6 +17,8 @@ const baseOptions: Options = {
 		}
 	},
 	xAxis: {
+		min: 0,
+		max: 11,
 		categories: [
 			'Jan',
 			'Feb',

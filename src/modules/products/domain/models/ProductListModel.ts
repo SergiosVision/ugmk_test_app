@@ -1,6 +1,6 @@
 import { number, object, string } from 'yup';
 
-import { Model } from '@common/model/model.ts';
+import { Model } from '@common/model/model';
 
 export class ProductListModel extends Model {
 	id: NumberOrNull = null;

@@ -7,12 +7,12 @@ import { FC, useEffect, useMemo } from 'react';
 import { useErrorBoundary } from 'react-error-boundary';
 import { useNavigate } from 'react-router-dom';
 
-import { formatKgToTons } from '@utils/formatters.ts';
+import { formatKgToTons } from '@utils/formatters';
 
-import { ProductType } from '../../typings/productType.ts';
+import { ProductType } from '../../typings/productType';
 
 import View from './view/View.tsx';
-import { ProductsViewModel } from './viewModel.ts';
+import { ProductsViewModel } from './viewModel';
 
 interface Props {
 	viewModel: ProductsViewModel;

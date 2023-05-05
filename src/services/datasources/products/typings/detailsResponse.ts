@@ -1,6 +1,6 @@
-import { Product } from './product.ts';
+import { Product } from './product';
 
-export type DetailsResponse = {
+export interface DetailsResponse {
 	factory_id: number;
 	products: Product[];
-};
+}

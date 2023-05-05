@@ -6,8 +6,6 @@ import {
 	ModelValueValidationError
 } from '@common/exceptions/validation';
 
-// import { KeyValue } from '@common/types/interfaces/common';
-
 export class Model {
 	constructor(attributes: KeyValue) {
 		this.validate(attributes).then(result => this.mergeValues(result));
