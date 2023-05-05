@@ -9,49 +9,12 @@ export const baseOptions: Partial<Options> = {
 		enabled: false
 	},
 	chart: {
-		backgroundColor: '#424244'
-	},
-	colors: ['#FF7652', '#6C4ECF', '#32A8E2', '#50B432', '#ffffff'],
-	title: {
-		style: {
-			color: '#ffffff'
-		}
-	},
-	subtitle: {
-		style: {
-			color: '#ffffff'
-		}
+		backgroundColor: undefined
 	},
 	legend: {
-		itemStyle: {
-			color: '#ffffff'
-		},
-		itemHoverStyle: {
-			color: 'rgba(255, 255, 255, 0.3)'
-		}
-	},
-	yAxis: {
-		labels: {
-			style: {
-				color: '#ffffff'
-			}
-		},
-		title: {
-			style: {
-				color: '#ffffff'
-			}
-		}
-	},
-	xAxis: {
-		labels: {
-			style: {
-				color: '#ffffff'
-			}
-		},
-		title: {
-			style: {
-				color: '#ffffff'
-			}
+		symbolRadius: 0,
+		labelFormatter: function () {
+			return '<span style="color: ' + this.color + '">' + this.name + '</span>';
 		}
 	}
 };

@@ -4,6 +4,7 @@ import Text from '@components/ui/typography/text/Text';
 
 import { ProductType } from '../../../typings/productType';
 
+import ContentContainer from './ContentContainer';
 import styles from './styles/Header.module.scss';
 
 interface Props {
@@ -17,20 +18,20 @@ const Header: FC<Props> = ({ changeFilter, productType }) => {
 	};
 
 	return (
-		<section className={styles.wrapper}>
+		<ContentContainer className={styles.wrapper}>
 			<div className={styles.filter}>
-				<Text>Filter by product type:</Text>
+				<Text>Фильтр по типу продукции:</Text>
 				<select
 					className={styles.select}
 					value={productType}
 					onChange={handleChangeFilter}
 				>
-					<option value={ProductType.ALL}>All</option>
-					<option value={ProductType.PRODUCT_1}>Product 1</option>
-					<option value={ProductType.PRODUCT_2}>Product 2</option>
+					<option value={ProductType.ALL}>Все продукты</option>
+					<option value={ProductType.PRODUCT_1}>Продукт 1</option>
+					<option value={ProductType.PRODUCT_2}>Продукт 2</option>
 				</select>
 			</div>
-		</section>
+		</ContentContainer>
 	);
 };
 

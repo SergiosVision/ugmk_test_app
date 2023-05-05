@@ -42,7 +42,7 @@ export class ProductsRepositoryImpl implements IRepositoriesRepositoryImpl {
 			);
 		} catch (error) {
 			throw new ProductsDefaultError(
-				'Cannot get list of products. Try again later'
+				'Не удалось получить список продуктов. Попробуйте позже'
 			);
 		}
 	}
@@ -68,7 +68,7 @@ export class ProductsRepositoryImpl implements IRepositoriesRepositoryImpl {
 			}
 
 			throw new FactoryDefaultError(
-				'Cannot get details of factory. Try again later'
+				'Не удалось получить детальную информацию о фабрике. Попробуйте позже'
 			);
 		}
 	}

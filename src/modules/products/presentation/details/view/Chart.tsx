@@ -1,5 +1,6 @@
 import { Options, SeriesOptionsType } from 'highcharts';
 import { FC } from 'react';
+import colors from 'tailwindcss/colors';
 
 import ChartComponent from '@modules/chart/Chart';
 
@@ -14,14 +15,21 @@ const baseOptions: Options = {
 		type: 'pie',
 		height: '400px'
 	},
+	colors: [colors.green['500'], colors.amber['500']],
 	plotOptions: {
 		pie: {
 			allowPointSelect: true,
 			cursor: 'pointer',
 			dataLabels: {
 				enabled: true,
+				connectorWidth: 0,
+				style: {
+					textOutline: undefined
+				},
 				formatter: function () {
-					return this.y;
+					return (
+						'<span style="color: ' + this.color + '">' + this.y + '</span>'
+					);
 				}
 			},
 			showInLegend: true

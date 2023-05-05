@@ -28,27 +28,27 @@ export class ProductsDataSourceImpl implements IProductsDataSourceImpl {
 		const response = await this.getJson();
 
 		if (!Number(monthId) || +monthId < 1 || +monthId > 12) {
-			throw new ValidationError('Wrong month value');
+			throw new ValidationError('Месяц указан неверно');
 		}
 
-		const currentProduct = response.find(
+		const foundFactory = response.find(
 			product => String(product.factory_id) === factoryId
 		);
 
-		if (!currentProduct) {
-			throw new NotFound('Product not found');
+		if (!foundFactory) {
+			throw new NotFound('Фабрика не найден');
 		}
 
 		const products = response.filter(product => {
 			return (
 				String(product.factory_id) === factoryId &&
-				monthId === String(new Date(product.date as string).getMonth() + 1)
+				monthId === String(new Date(product.date as string).getUTCMonth() + 1)
 			);
 		});
 
 		return {
 			products,
-			factory_id: currentProduct.factory_id
+			factory_id: foundFactory.factory_id
 		};
 	}
 

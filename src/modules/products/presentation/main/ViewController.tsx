@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { formatKgToTons } from '@utils/formatters';
 
 import { ProductType } from '../../typings/productType';
+import { formatFactoryIdToString } from '../../utils/formatFactoryIdToString';
 
 import View from './view/View.tsx';
 import { ProductsViewModel } from './viewModel';
@@ -35,10 +36,12 @@ const ViewController: FC<Props> = ({ viewModel }) => {
 	const chartData = useMemo(() => {
 		return toPairs(groupBy(viewModel.list, 'factory_id')).map(
 			([key, items]) => ({
-				name: `Factory ${key}`,
-				id: key,
+				name: `Фабрика ${formatFactoryIdToString(Number(key))}`,
+				events: {
+					click: ({ point }) => handlePlotClick(key, point)
+				},
 				data: values(
-					groupBy(items, ({ date }) => new Date(date as string).getMonth())
+					groupBy(items, ({ date }) => new Date(date as string).getUTCMonth())
 				).map(productItems =>
 					productItems.reduce(
 						(sum, product) => sum + formatKgToTons(product.product_weight),
@@ -53,8 +56,8 @@ const ViewController: FC<Props> = ({ viewModel }) => {
 		await viewModel.changeFilter(type);
 	};
 
-	const handlePlotClick = (point: Point) => {
-		navigate(`/factories/${point.series.userOptions.id}/${point.index + 1}`);
+	const handlePlotClick = (factoryId: string, point: Point) => {
+		navigate(`/factories/${factoryId}/${point.index + 1}`);
 	};
 
 	return (
@@ -63,7 +66,6 @@ const ViewController: FC<Props> = ({ viewModel }) => {
 			isLoading={viewModel.isLoading}
 			productType={viewModel.productType}
 			changeFilter={handleChangeFilter}
-			plotClick={handlePlotClick}
 		/>
 	);
 };

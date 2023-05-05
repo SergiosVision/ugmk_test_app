@@ -12,9 +12,9 @@ const Fallback: FC<FallbackProps> = ({ error }) => {
 
 	return (
 		<div className={styles.wrapper}>
-			<BaseErrorText>Something went wrong:</BaseErrorText>
+			<BaseErrorText>Ошибка:</BaseErrorText>
 			<Text className='text-base text-center'>{error?.message}</Text>
-			<PrimaryButton onClick={resetBoundary}>Retry</PrimaryButton>
+			<PrimaryButton onClick={resetBoundary}>Повторить</PrimaryButton>
 		</div>
 	);
 };

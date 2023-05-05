@@ -1,5 +1,5 @@
 .wrapper {
-  @apply flex flex-row w-full sm:justify-end bg-backgroundSecondary shadow rounded-md p-6;
+  @apply flex flex-row w-full sm:justify-end;
 }
 
 .filter {
@@ -7,5 +7,5 @@
 }
 
 .select {
-  @apply bg-backgroundSecondary sm:w-[150px] w-full cursor-pointer outline-0;
+  @apply bg-white sm:w-[150px] w-full cursor-pointer;
 }

@@ -4,10 +4,8 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				base: '#ffffff',
+				base: '#000000',
 				primary: '#FF7652',
-				purple: '#6C4ECF',
-				background: '#1f1d2b',
 				backgroundSecondary: '#424244'
 			},
 			boxShadow: {

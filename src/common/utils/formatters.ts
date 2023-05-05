@@ -13,5 +13,5 @@ export const formatMothValueToString = (
 
 	date.setMonth((typeof value === 'string' ? +value : value) - 1);
 
-	return date.toLocaleDateString('en-US', { month: 'short' });
+	return date.toLocaleDateString('ru-RU', { month: 'short' });
 };

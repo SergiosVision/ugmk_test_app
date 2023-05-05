@@ -6,7 +6,7 @@ import { FactoryDetails } from '@modules/products/presentation/details/index';
 
 const FactoryDetailsPage: FC = () => {
 	return (
-		<Container className='flex flex-col w-full'>
+		<Container className='flex flex-col'>
 			<FactoryDetails />
 		</Container>
 	);

@@ -1,5 +1,5 @@
 .primary-button {
-  @apply bg-primary transition-opacity ease-in-out;
+  @apply bg-primary transition-opacity ease-in-out text-white;
 
   &:not(:disabled) {
     @apply cursor-pointer;

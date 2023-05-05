@@ -39,14 +39,15 @@ const ViewController: FC<Props> = ({ viewModel }) => {
 
 		return [
 			{
-				name: 'Kilograms',
+				name: 'Килограммы',
+				colorByPoint: true,
 				data: [
 					{
-						name: 'Product 1',
+						name: 'Продукт 1',
 						y: productsSum.product1
 					},
 					{
-						name: 'Product 2',
+						name: 'Продукт 2',
 						y: productsSum.product2
 					}
 				]
