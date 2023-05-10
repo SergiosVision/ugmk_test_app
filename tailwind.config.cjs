@@ -5,8 +5,7 @@ module.exports = {
 		extend: {
 			colors: {
 				base: '#000000',
-				primary: '#FF7652',
-				backgroundSecondary: '#424244'
+				primary: '#FF7652'
 			},
 			boxShadow: {
 				DEFAULT: '0 3px 12px rgba(0, 0, 0, 0.6)',

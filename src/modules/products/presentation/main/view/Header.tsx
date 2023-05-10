@@ -2,7 +2,7 @@ import { ChangeEvent, FC } from 'react';
 
 import Text from '@components/ui/typography/text/Text';
 
-import { ProductType } from '../../../typings/productType';
+import { ProductType } from '@modules/products/typings/productType';
 
 import ContentContainer from './ContentContainer';
 import styles from './styles/Header.module.scss';

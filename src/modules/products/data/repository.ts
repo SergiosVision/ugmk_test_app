@@ -1,8 +1,6 @@
 import { NotFound } from '@common/exceptions/notFound';
 import { ValidationError } from '@common/exceptions/validation';
 
-import { ProductsDataSourceImpl } from '@services/datasources/products/products';
-
 import { FactoryDefaultError } from '@modules/products/exceptions/factoryDefaultError';
 import { FactoryNotFound } from '@modules/products/exceptions/factoryNotFound';
 import { FactoryValidationError } from '@modules/products/exceptions/factoryValidationError';
@@ -13,12 +11,14 @@ import { ProductListModel } from '../domain/models/ProductListModel';
 import { ProductType } from '../typings/productType';
 import { getSumOfProductsByType } from '../utils/getSumOfProductsByType';
 
-interface IRepositoriesRepositoryImpl {
+import { ProductsDataSourceImpl } from './datasource/products';
+
+interface IProductsRepository {
 	getList(productType?: ProductType): Promise<ProductListModel[]>;
 	getDetails(factoryId: string, monthId: string): Promise<FactoryDetailsModel>;
 }
 
-export class ProductsRepositoryImpl implements IRepositoriesRepositoryImpl {
+export class ProductsRepositoryImpl implements IProductsRepository {
 	constructor(private readonly dataSource: ProductsDataSourceImpl) {}
 
 	async getList(productType?: ProductType) {

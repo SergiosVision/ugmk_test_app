@@ -1,13 +1,13 @@
 import { FC } from 'react';
 
-import { ProductsDataSourceImpl } from '@services/datasources/products/products';
-import { ListStorage } from '@services/datasources/products/storages/listMemoryStorage';
 import localStorageService from '@services/localStorage.service';
 
 import ErrorBoundaryWrapper from '@components/errors/ErrorBoundaryWrapper';
 
-import { ProductsRepositoryImpl } from '../../data/repository';
-import { GetProductsListCase } from '../../domain/usecases/getProductsList';
+import { ProductsDataSourceImpl } from '@modules/products/data/datasource/products';
+import { ListStorage } from '@modules/products/data/datasource/storages/listMemoryStorage';
+import { ProductsRepositoryImpl } from '@modules/products/data/repository';
+import { GetProductsListCase } from '@modules/products/domain/usecases/getProductsList';
 
 import ViewController from './ViewController';
 import { ProductsViewModel } from './viewModel';

@@ -7,10 +7,10 @@ import { FC, useEffect, useMemo } from 'react';
 import { useErrorBoundary } from 'react-error-boundary';
 import { useNavigate } from 'react-router-dom';
 
-import { formatKgToTons } from '@utils/formatters';
+import { ProductType } from '@modules/products/typings/productType';
+import { formatFactoryIdToString } from '@modules/products/utils/formatFactoryIdToString';
 
-import { ProductType } from '../../typings/productType';
-import { formatFactoryIdToString } from '../../utils/formatFactoryIdToString';
+import { formatKgToTons } from '@utils/formatters';
 
 import View from './view/View.tsx';
 import { ProductsViewModel } from './viewModel';
@@ -44,7 +44,8 @@ const ViewController: FC<Props> = ({ viewModel }) => {
 					groupBy(items, ({ date }) => new Date(date as string).getUTCMonth())
 				).map(productItems =>
 					productItems.reduce(
-						(sum, product) => sum + formatKgToTons(product.product_weight),
+						(sum, product) =>
+							+(sum + formatKgToTons(product.product_weight)).toFixed(3),
 						0
 					)
 				)

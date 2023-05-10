@@ -7,9 +7,9 @@ import routes from '@common/router/routes';
 import PrimaryButton from '@components/ui/buttons/primary/PrimaryButton';
 import TextH2 from '@components/ui/typography/text/TextH2';
 
-import { formatMothValueToString } from '@utils/formatters';
+import { formatFactoryIdToString } from '@modules/products/utils/formatFactoryIdToString';
 
-import { formatFactoryIdToString } from '../../../utils/formatFactoryIdToString';
+import { formatMothValueToString } from '@utils/formatters';
 
 import Chart from './Chart';
 import Skeleton from './Skeleton';

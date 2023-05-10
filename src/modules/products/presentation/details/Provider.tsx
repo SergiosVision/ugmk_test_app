@@ -1,12 +1,11 @@
 import { FC } from 'react';
 
-import { ProductsDataSourceImpl } from '@services/datasources/products/products';
-import { ListStorage } from '@services/datasources/products/storages/listMemoryStorage';
-
 import ErrorBoundaryWrapper from '@components/errors/ErrorBoundaryWrapper';
 
-import { ProductsRepositoryImpl } from '../../data/repository';
-import { GetFactoryDetailsCase } from '../../domain/usecases/getFactoryDetails';
+import { ProductsDataSourceImpl } from '@modules/products/data/datasource/products';
+import { ListStorage } from '@modules/products/data/datasource/storages/listMemoryStorage';
+import { ProductsRepositoryImpl } from '@modules/products/data/repository';
+import { GetFactoryDetailsCase } from '@modules/products/domain/usecases/getFactoryDetails';
 
 import ViewController from './ViewController';
 import { FactoryDetailsViewModel } from './viewModel';

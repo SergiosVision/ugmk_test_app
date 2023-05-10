@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction, toJS } from 'mobx';
 
-import { FactoryDetailsModel } from '../../domain/models/FactoryDetailsModel';
-import { GetFactoryDetailsCase } from '../../domain/usecases/getFactoryDetails';
+import { FactoryDetailsModel } from '@modules/products/domain/models/FactoryDetailsModel';
+import { GetFactoryDetailsCase } from '@modules/products/domain/usecases/getFactoryDetails';
 
 type UseCases = {
 	getFactoryDetailsCase: GetFactoryDetailsCase;

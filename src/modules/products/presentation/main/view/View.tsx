@@ -1,7 +1,7 @@
 import { SeriesOptionsType } from 'highcharts';
 import { FC } from 'react';
 
-import { ProductType } from '../../../typings/productType';
+import { ProductType } from '@modules/products/typings/productType';
 
 import Chart from './Chart';
 import ChartSkeleton from './ChartSkeleton';

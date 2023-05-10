@@ -2,9 +2,9 @@ import { makeAutoObservable, runInAction, toJS } from 'mobx';
 
 import { StorageAbstractionService } from '@services/abstractions/storageAbstraction.service.ts';
 
-import { ProductListModel } from '../../domain/models/ProductListModel';
-import { GetProductsListCase } from '../../domain/usecases/getProductsList';
-import { ProductType } from '../../typings/productType';
+import { ProductListModel } from '@modules/products/domain/models/ProductListModel';
+import { GetProductsListCase } from '@modules/products/domain/usecases/getProductsList';
+import { ProductType } from '@modules/products/typings/productType';
 
 type UseCases = {
 	getProductsListCase: GetProductsListCase;
