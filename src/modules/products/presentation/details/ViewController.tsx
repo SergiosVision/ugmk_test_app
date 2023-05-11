@@ -4,6 +4,8 @@ import { FC, useEffect, useMemo } from 'react';
 import { useErrorBoundary } from 'react-error-boundary';
 import { useParams } from 'react-router-dom';
 
+import { formatKgToTons } from '@utils/formatters.ts';
+
 import View from './view/View';
 import { FactoryDetailsViewModel } from './viewModel';
 
@@ -31,7 +33,7 @@ const ViewController: FC<Props> = ({ viewModel }) => {
 		() =>
 			[
 				{
-					name: 'Килограммы',
+					name: 'Тонн',
 					colorByPoint: true,
 					data: Object.values(
 						viewModel.data.products.reduce(
@@ -45,7 +47,7 @@ const ViewController: FC<Props> = ({ viewModel }) => {
 						)
 					).map((value, index) => ({
 						name: `Продукт ${index + 1}`,
-						y: value
+						y: +formatKgToTons(value).toFixed(3)
 					}))
 				}
 			] as SeriesOptionsType[],
