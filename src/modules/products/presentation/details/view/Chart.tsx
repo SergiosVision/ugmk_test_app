@@ -15,7 +15,7 @@ const baseOptions: Options = {
 		type: 'pie',
 		height: '400px'
 	},
-	colors: [colors.green['500'], colors.amber['500']],
+	colors: [colors.green['500'], colors.amber['500'], colors.red[500]],
 	plotOptions: {
 		pie: {
 			allowPointSelect: true,

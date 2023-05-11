@@ -27,33 +27,30 @@ const ViewController: FC<Props> = ({ viewModel }) => {
 		})();
 	}, []);
 
-	const chartData = useMemo(() => {
-		const productsSum = viewModel.data.products.reduce(
-			(result, item) => ({
-				...result,
-				product1: result.product1 + (item.product1 || 0),
-				product2: result.product2 + (item.product2 || 0)
-			}),
-			{ product1: 0, product2: 0 }
-		);
-
-		return [
-			{
-				name: 'Килограммы',
-				colorByPoint: true,
-				data: [
-					{
-						name: 'Продукт 1',
-						y: productsSum.product1
-					},
-					{
-						name: 'Продукт 2',
-						y: productsSum.product2
-					}
-				]
-			}
-		] as SeriesOptionsType[];
-	}, [viewModel.data.products]);
+	const chartData = useMemo(
+		() =>
+			[
+				{
+					name: 'Килограммы',
+					colorByPoint: true,
+					data: Object.values(
+						viewModel.data.products.reduce(
+							(result, item) => ({
+								...result,
+								product1: result.product1 + (item.product1 || 0),
+								product2: result.product2 + (item.product2 || 0),
+								product3: result.product3 + (item.product3 || 0)
+							}),
+							{ product1: 0, product2: 0, product3: 0 }
+						)
+					).map((value, index) => ({
+						name: `Продукт ${index + 1}`,
+						y: value
+					}))
+				}
+			] as SeriesOptionsType[],
+		[viewModel.data.products]
+	);
 
 	return (
 		<View

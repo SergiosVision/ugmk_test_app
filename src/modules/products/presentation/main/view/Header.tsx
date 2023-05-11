@@ -26,9 +26,11 @@ const Header: FC<Props> = ({ changeFilter, productType }) => {
 					value={productType}
 					onChange={handleChangeFilter}
 				>
-					<option value={ProductType.ALL}>Все продукты</option>
-					<option value={ProductType.PRODUCT_1}>Продукт 1</option>
-					<option value={ProductType.PRODUCT_2}>Продукт 2</option>
+					{Object.values(ProductType).map((value, index) => (
+						<option key={value} value={value}>
+							{value === ProductType.ALL ? 'Все продукты' : `Продукт ${index}`}
+						</option>
+					))}
 				</select>
 			</div>
 		</ContentContainer>

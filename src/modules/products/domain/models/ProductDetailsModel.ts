@@ -8,6 +8,7 @@ export class ProductDetailsModel extends Model {
 	date: StringOrNull = null;
 	product1: NumberOrNull = null;
 	product2: NumberOrNull = null;
+	product3: NumberOrNull = null;
 
 	static getSchema() {
 		return object().shape({
@@ -15,7 +16,8 @@ export class ProductDetailsModel extends Model {
 			factory_id: number(),
 			date: string().nullable(),
 			product1: number().nullable(),
-			product2: number().nullable()
+			product2: number().nullable(),
+			product3: number().nullable()
 		});
 	}
 }
