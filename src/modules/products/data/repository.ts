@@ -33,9 +33,9 @@ export class ProductsRepositoryImpl implements IProductsRepository {
 						date: product.date,
 						product_weight: getSumOfProductsByType(
 							{
-								product_1: product.product1 || 0,
-								product_2: product.product2 || 0,
-								product_3: product.product3 || 0
+								[ProductType.PRODUCT_1]: product.product1 || 0,
+								[ProductType.PRODUCT_2]: product.product2 || 0,
+								[ProductType.PRODUCT_3]: product.product3 || 0
 							},
 							productType
 						)
