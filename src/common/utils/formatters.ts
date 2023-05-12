@@ -1,7 +1,7 @@
 export const formatKgToTons = (value: NumberOrNull) => {
 	if (!value) return 0;
 
-	return value / 1000;
+	return Math.floor(value / 1000);
 };
 
 export const formatMothValueToString = (

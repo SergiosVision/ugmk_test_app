@@ -43,10 +43,11 @@ const ViewController: FC<Props> = ({ viewModel }) => {
 				data: values(
 					groupBy(items, ({ date }) => new Date(date as string).getMonth())
 				).map(productItems =>
-					productItems.reduce(
-						(sum, product) =>
-							+(sum + formatKgToTons(product.product_weight)).toFixed(3),
-						0
+					formatKgToTons(
+						productItems.reduce(
+							(sum, product) => sum + (product.product_weight || 0),
+							0
+						)
 					)
 				)
 			})

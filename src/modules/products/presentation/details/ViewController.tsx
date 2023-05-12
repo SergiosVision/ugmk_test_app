@@ -47,7 +47,7 @@ const ViewController: FC<Props> = ({ viewModel }) => {
 						)
 					).map((value, index) => ({
 						name: `Продукт ${index + 1}`,
-						y: +formatKgToTons(value).toFixed(3)
+						y: formatKgToTons(value)
 					}))
 				}
 			] as SeriesOptionsType[],
