@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import routes from '@common/router/routes';
 
 import PrimaryButton from '@components/ui/buttons/primary/PrimaryButton';
+import Text from '@components/ui/typography/text/Text.tsx';
 import TextH2 from '@components/ui/typography/text/TextH2';
 
 import { formatFactoryIdToString } from '@modules/products/utils/formatFactoryIdToString';
@@ -38,7 +39,11 @@ const View: FC<Props> = ({ chartData, isLoading, factoryId, monthId }) => {
 						</span>
 					</TextH2>
 					<section className='h-[400px]'>
-						<Chart series={chartData} />
+						{chartData.length ? (
+							<Chart series={chartData} />
+						) : (
+							<Text className='text-center'>Нет данных для отображения</Text>
+						)}
 					</section>
 				</>
 			) : (
