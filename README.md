@@ -1,4 +1,4 @@
-# Getting Started with Chart test app
+# Getting Started with UGMK-test-app
 
 ## Before starting a project
 
