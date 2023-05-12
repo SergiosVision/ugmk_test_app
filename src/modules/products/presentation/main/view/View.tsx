@@ -1,6 +1,8 @@
 import { SeriesOptionsType } from 'highcharts';
 import { FC } from 'react';
 
+import Text from '@components/ui/typography/text/Text';
+
 import { ProductType } from '@modules/products/typings/productType';
 
 import Chart from './Chart';
@@ -25,7 +27,15 @@ const View: FC<Props> = ({
 		<div className='flex flex-col w-full gap-6'>
 			<Header productType={productType} changeFilter={changeFilter} />
 			<ContentContainer>
-				{!isLoading ? <Chart series={chartData} /> : <ChartSkeleton />}
+				{!isLoading ? (
+					chartData.length ? (
+						<Chart series={chartData} />
+					) : (
+						<Text className='text-center'>Нет данных для отображения</Text>
+					)
+				) : (
+					<ChartSkeleton />
+				)}
 			</ContentContainer>
 		</div>
 	);
