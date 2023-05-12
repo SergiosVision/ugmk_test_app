@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "json-server": "json-server --watch public/json/products.json --port 3001",
     "dockerize": "docker build -t ugmk_test_app .",
-    "start-container": "docker container run -it -p 3000:3000 --rm ugmk_test_app"
+    "start-container": "docker container run -it -p 3000:3000 --name ugmk_test_app --rm ugmk_test_app"
   },
   "dependencies": {
     "highcharts": "10.3.3",

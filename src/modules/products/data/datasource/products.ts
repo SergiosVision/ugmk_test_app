@@ -52,9 +52,7 @@ export class ProductsDataSourceImpl implements IProductsDataSourceImpl {
 
 	private async getJson(): Promise<Product[]> {
 		if (!this.storage.size) {
-			const response = await fetch(
-				`${import.meta.env.VITE_APP_API_URL}/products`
-			);
+			const response = await fetch('http://localhost:3001/products');
 			const json = (await response.json()) as Product[];
 
 			this.storage.set(
