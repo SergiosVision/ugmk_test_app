@@ -1,5 +1,3 @@
-import sortBy from 'lodash/sortBy';
-
 import { NotFound } from '@common/exceptions/notFound';
 import { ValidationError } from '@common/exceptions/validation';
 
@@ -42,7 +40,7 @@ export class ProductsDataSourceImpl implements IProductsDataSourceImpl {
 		const products = response.filter(product => {
 			return (
 				String(product.factory_id) === factoryId &&
-				monthId === String(new Date(product.date as string).getUTCMonth() + 1)
+				monthId === String(new Date(product.date as string).getMonth() + 1)
 			);
 		});
 
@@ -60,17 +58,14 @@ export class ProductsDataSourceImpl implements IProductsDataSourceImpl {
 			const json = (await response.json()) as Product[];
 
 			this.storage.set(
-				sortBy(
-					json
-						.map(product => ({
-							...product,
-							date: product.date
-								? normalizeDate(product.date).toISOString()
-								: null
-						}))
-						.filter(product => !!product?.date),
-					'date'
-				)
+				json
+					.map(product => ({
+						...product,
+						date: product.date
+							? normalizeDate(product.date).toISOString()
+							: null
+					}))
+					.filter(product => !!product?.date)
 			);
 		}
 

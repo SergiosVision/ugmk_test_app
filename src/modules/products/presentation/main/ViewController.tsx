@@ -41,7 +41,7 @@ const ViewController: FC<Props> = ({ viewModel }) => {
 					click: ({ point }) => handlePlotClick(key, point)
 				},
 				data: values(
-					groupBy(items, ({ date }) => new Date(date as string).getUTCMonth())
+					groupBy(items, ({ date }) => new Date(date as string).getMonth())
 				).map(productItems =>
 					productItems.reduce(
 						(sum, product) =>
