@@ -36,7 +36,7 @@ export class ProductsDataSourceImpl implements IProductsDataSourceImpl {
 		);
 
 		if (!foundFactory) {
-			throw new NotFound('Фабрика не найден');
+			throw new NotFound('Фабрика не найдена');
 		}
 
 		const products = response.filter(product => {
