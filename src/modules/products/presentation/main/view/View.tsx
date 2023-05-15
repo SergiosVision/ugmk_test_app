@@ -1,6 +1,7 @@
 import { SeriesOptionsType } from 'highcharts';
 import { FC } from 'react';
 
+import { useErrorBoundaryContext } from '@components/errors/ErrorBoundaryContextProvider.tsx';
 import Text from '@components/ui/typography/text/Text';
 
 import { ProductType } from '@modules/products/typings/productType';
@@ -23,11 +24,15 @@ const View: FC<Props> = ({
 	productType,
 	changeFilter
 }) => {
+	const { error, errorFallback } = useErrorBoundaryContext();
+
 	return (
 		<div className='flex flex-col w-full gap-6'>
 			<Header productType={productType} changeFilter={changeFilter} />
-			<ContentContainer>
-				{!isLoading ? (
+			<ContentContainer className='h-[400px]'>
+				{error ? (
+					errorFallback
+				) : !isLoading ? (
 					chartData.length ? (
 						<Chart series={chartData} />
 					) : (

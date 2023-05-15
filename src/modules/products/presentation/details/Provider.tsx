@@ -1,7 +1,5 @@
 import { FC } from 'react';
 
-import ErrorBoundaryWrapper from '@components/errors/ErrorBoundaryWrapper';
-
 import { ProductsDataSourceImpl } from '@modules/products/data/datasource/products';
 import { ListStorage } from '@modules/products/data/datasource/storages/listMemoryStorage';
 import { ProductsRepositoryImpl } from '@modules/products/data/repository';
@@ -16,11 +14,7 @@ const getFactoryDetailsCase = new GetFactoryDetailsCase(repository);
 const viewModel = new FactoryDetailsViewModel({ getFactoryDetailsCase });
 
 const Provider: FC = () => {
-	return (
-		<ErrorBoundaryWrapper>
-			<ViewController viewModel={viewModel} />
-		</ErrorBoundaryWrapper>
-	);
+	return <ViewController viewModel={viewModel} />;
 };
 
 export default Provider;

@@ -14,7 +14,8 @@ const FILTER_KEY = 'product-type';
 
 export class ProductsViewModel {
 	private _list: ProductListModel[] = [];
-	private _isLoading = false;
+	private _isLoading = true;
+	private _error: any = null;
 	private _productType: ProductType = ProductType.ALL;
 
 	constructor(
@@ -38,10 +39,20 @@ export class ProductsViewModel {
 		return toJS(this._productType);
 	}
 
+	get error() {
+		return toJS(this._error);
+	}
+
+	setError(error: any) {
+		this._error = error;
+	}
+
 	async getList() {
 		this.clearData();
 
-		this._isLoading = true;
+		if (!this._isLoading) {
+			this._isLoading = true;
+		}
 
 		try {
 			const response = await this.useCases.getProductsListCase.execute(
@@ -51,6 +62,10 @@ export class ProductsViewModel {
 			runInAction(() => {
 				this._list = response;
 			});
+		} catch (error) {
+			this.setError(error);
+
+			throw error;
 		} finally {
 			runInAction(() => {
 				this._isLoading = false;

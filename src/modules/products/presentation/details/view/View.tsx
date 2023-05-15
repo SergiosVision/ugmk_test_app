@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import routes from '@common/router/routes';
 
+import { useErrorBoundaryContext } from '@components/errors/ErrorBoundaryContextProvider.tsx';
 import PrimaryButton from '@components/ui/buttons/primary/PrimaryButton';
 import Text from '@components/ui/typography/text/Text.tsx';
 import TextH2 from '@components/ui/typography/text/TextH2';
@@ -23,13 +24,17 @@ interface Props {
 }
 
 const View: FC<Props> = ({ chartData, isLoading, factoryId, monthId }) => {
+	const { error, errorFallback } = useErrorBoundaryContext();
+
 	return (
 		<div className='flex flex-col gap-6'>
 			<Link to={routes.home}>
 				<PrimaryButton className='w-full sm:w-max'>Назад</PrimaryButton>
 			</Link>
 
-			{!isLoading ? (
+			{error ? (
+				errorFallback
+			) : !isLoading ? (
 				<>
 					<TextH2 className='mb-6 text-center'>
 						Статистика по продукции фабрики {formatFactoryIdToString(factoryId)}{' '}

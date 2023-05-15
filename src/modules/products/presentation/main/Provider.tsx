@@ -2,8 +2,6 @@ import { FC } from 'react';
 
 import localStorageService from '@services/localStorage.service';
 
-import ErrorBoundaryWrapper from '@components/errors/ErrorBoundaryWrapper';
-
 import { ProductsDataSourceImpl } from '@modules/products/data/datasource/products';
 import { ListStorage } from '@modules/products/data/datasource/storages/listMemoryStorage';
 import { ProductsRepositoryImpl } from '@modules/products/data/repository';
@@ -21,11 +19,7 @@ const viewModel = new ProductsViewModel(
 );
 
 const Provider: FC = () => {
-	return (
-		<ErrorBoundaryWrapper>
-			<ViewController viewModel={viewModel} />
-		</ErrorBoundaryWrapper>
-	);
+	return <ViewController viewModel={viewModel} />;
 };
 
 export default Provider;

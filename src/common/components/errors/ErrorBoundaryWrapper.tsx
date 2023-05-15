@@ -1,14 +1,21 @@
-import { FC, ReactNode } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
+import { FC } from 'react';
 
+import ErrorBoundaryContextProvider, {
+	ErrorBoundaryContextProviderProps
+} from './ErrorBoundaryContextProvider';
 import Fallback from './fallback/Fallback';
 
-interface Props {
-	children: ReactNode;
-}
+type Props = Pick<
+	ErrorBoundaryContextProviderProps,
+	'error' | 'children' | 'resetErrorBoundary'
+>;
 
-const ErrorBoundaryWrapper: FC<Props> = ({ children }) => {
-	return <ErrorBoundary FallbackComponent={Fallback}>{children}</ErrorBoundary>;
+const ErrorBoundaryWrapper: FC<Props> = ({ children, ...rest }) => {
+	return (
+		<ErrorBoundaryContextProvider {...rest} FallbackComponent={Fallback}>
+			{children}
+		</ErrorBoundaryContextProvider>
+	);
 };
 
 export default ErrorBoundaryWrapper;

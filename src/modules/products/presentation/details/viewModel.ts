@@ -9,7 +9,8 @@ type UseCases = {
 
 export class FactoryDetailsViewModel {
 	private _data: FactoryDetailsModel = new FactoryDetailsModel({});
-	private _isLoading = false;
+	private _isLoading = true;
+	private _error: any = null;
 
 	constructor(private readonly useCases: UseCases) {
 		makeAutoObservable(this);
@@ -23,10 +24,20 @@ export class FactoryDetailsViewModel {
 		return toJS(this._isLoading);
 	}
 
+	get error() {
+		return toJS(this._error);
+	}
+
+	setError(error: any) {
+		this._error = error;
+	}
+
 	async getDetails(factoryId: string, monthId: string) {
 		this.clearData();
 
-		this._isLoading = true;
+		if (!this._isLoading) {
+			this._isLoading = true;
+		}
 
 		try {
 			const response = await this.useCases.getFactoryDetailsCase.execute(
@@ -37,6 +48,10 @@ export class FactoryDetailsViewModel {
 			runInAction(() => {
 				this._data = response;
 			});
+		} catch (error) {
+			this._error = error;
+
+			throw error;
 		} finally {
 			runInAction(() => {
 				this._isLoading = false;

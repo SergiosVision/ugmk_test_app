@@ -9,7 +9,8 @@ export const baseOptions: Partial<Options> = {
 		enabled: false
 	},
 	chart: {
-		backgroundColor: undefined
+		backgroundColor: undefined,
+		height: '400px'
 	},
 	legend: {
 		symbolRadius: 0,

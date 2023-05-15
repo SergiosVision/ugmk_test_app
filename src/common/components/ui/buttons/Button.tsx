@@ -6,6 +6,7 @@ import styles from './styles/Button.module.scss';
 
 export interface BaseButtonProps extends HTMLAttributes<HTMLButtonElement> {
 	children: ReactNode;
+	disabled?: boolean;
 }
 
 const Button: FC<BaseButtonProps> = ({ children, className, ...rest }) => {

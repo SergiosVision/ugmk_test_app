@@ -4,8 +4,9 @@ import toPairs from 'lodash/toPairs';
 import values from 'lodash/values';
 import { observer } from 'mobx-react-lite';
 import { FC, useEffect, useMemo } from 'react';
-import { useErrorBoundary } from 'react-error-boundary';
 import { useNavigate } from 'react-router-dom';
+
+import ErrorBoundaryWrapper from '@components/errors/ErrorBoundaryWrapper.tsx';
 
 import { ProductType } from '@modules/products/typings/productType';
 import { formatFactoryIdToString } from '@modules/products/utils/formatFactoryIdToString';
@@ -20,16 +21,19 @@ interface Props {
 }
 
 const ViewController: FC<Props> = ({ viewModel }) => {
-	const { showBoundary } = useErrorBoundary();
 	const navigate = useNavigate();
+
+	const handleReset = async () => {
+		await viewModel.getList();
+
+		if (viewModel.error) {
+			viewModel.setError(null);
+		}
+	};
 
 	useEffect(() => {
 		(async () => {
-			try {
-				await viewModel.getList();
-			} catch (error) {
-				showBoundary(error);
-			}
+			await viewModel.getList();
 		})();
 	}, []);
 
@@ -63,12 +67,17 @@ const ViewController: FC<Props> = ({ viewModel }) => {
 	};
 
 	return (
-		<View
-			chartData={chartData}
-			isLoading={viewModel.isLoading}
-			productType={viewModel.productType}
-			changeFilter={handleChangeFilter}
-		/>
+		<ErrorBoundaryWrapper
+			error={viewModel.error}
+			resetErrorBoundary={handleReset}
+		>
+			<View
+				chartData={chartData}
+				isLoading={viewModel.isLoading}
+				productType={viewModel.productType}
+				changeFilter={handleChangeFilter}
+			/>
+		</ErrorBoundaryWrapper>
 	);
 };
 

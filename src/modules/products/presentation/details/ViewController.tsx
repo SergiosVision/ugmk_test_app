@@ -1,8 +1,9 @@
 import { SeriesOptionsType } from 'highcharts';
 import { observer } from 'mobx-react-lite';
 import { FC, useEffect, useMemo } from 'react';
-import { useErrorBoundary } from 'react-error-boundary';
 import { useParams } from 'react-router-dom';
+
+import ErrorBoundaryWrapper from '@components/errors/ErrorBoundaryWrapper';
 
 import { formatKgToTons } from '@utils/formatters.ts';
 
@@ -14,17 +15,26 @@ interface Props {
 }
 
 const ViewController: FC<Props> = ({ viewModel }) => {
-	const { showBoundary } = useErrorBoundary();
 	const params = useParams<{ factoryId: string; monthId: string }>();
+
+	const handleRequestDetails = async () => {
+		if (params.factoryId && params.monthId) {
+			await viewModel.getDetails(params.factoryId, params.monthId);
+		}
+	};
+
+	const handleReset = async () => {
+		await handleRequestDetails();
+
+		if (viewModel.error) {
+			viewModel.setError(null);
+		}
+	};
 
 	useEffect(() => {
 		(async () => {
 			if (params.factoryId && params.monthId) {
-				try {
-					await viewModel.getDetails(params.factoryId, params.monthId);
-				} catch (error) {
-					showBoundary(error);
-				}
+				await handleRequestDetails();
 			}
 		})();
 	}, []);
@@ -55,12 +65,17 @@ const ViewController: FC<Props> = ({ viewModel }) => {
 	);
 
 	return (
-		<View
-			chartData={chartData}
-			monthId={params.monthId || ''}
-			factoryId={viewModel.data.factory_id}
-			isLoading={viewModel.isLoading}
-		/>
+		<ErrorBoundaryWrapper
+			error={viewModel.error}
+			resetErrorBoundary={handleReset}
+		>
+			<View
+				chartData={chartData}
+				monthId={params.monthId || ''}
+				factoryId={viewModel.data.factory_id}
+				isLoading={viewModel.isLoading}
+			/>
+		</ErrorBoundaryWrapper>
 	);
 };
 
