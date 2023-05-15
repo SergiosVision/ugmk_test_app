@@ -11,7 +11,7 @@ const ContentContainer: FC<Props> = ({ children, className }) => {
 	return (
 		<section
 			className={classNames(
-				'bg-white rounded-md p-6 border-2 border-base box-content w-full',
+				'bg-white rounded-md p-6 border-2 border-base',
 				className
 			)}
 		>

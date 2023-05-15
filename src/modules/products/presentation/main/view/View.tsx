@@ -29,7 +29,7 @@ const View: FC<Props> = ({
 	return (
 		<div className='flex flex-col w-full gap-6'>
 			<Header productType={productType} changeFilter={changeFilter} />
-			<ContentContainer className='h-[400px]'>
+			<ContentContainer className='h-[450px]'>
 				{error ? (
 					errorFallback
 				) : !isLoading ? (
