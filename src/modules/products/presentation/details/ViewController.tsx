@@ -33,9 +33,7 @@ const ViewController: FC<Props> = ({ viewModel }) => {
 
 	useEffect(() => {
 		(async () => {
-			if (params.factoryId && params.monthId) {
-				await handleRequestDetails();
-			}
+			await handleRequestDetails();
 		})();
 	}, []);
 
